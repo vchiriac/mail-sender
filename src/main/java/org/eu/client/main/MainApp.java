@@ -42,7 +42,7 @@ public class MainApp {
         try {
             new MainApp().run();
         } catch (InternalException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
