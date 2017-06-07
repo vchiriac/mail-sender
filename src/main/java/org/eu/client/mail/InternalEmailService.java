@@ -1,6 +1,6 @@
 package org.eu.client.mail;
 
-import org.eu.client.DisclaimerEnum;
+import org.eu.client.domain.DisclaimerEnum;
 import org.eu.client.domain.Disclaimer;
 
 public class InternalEmailService extends EmailService {

@@ -1,4 +1,4 @@
-package org.eu.client;
+package org.eu.client.domain;
 
 
 public enum DisclaimerEnum {

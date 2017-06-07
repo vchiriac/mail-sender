@@ -1,7 +1,5 @@
 package org.eu.client.main;
 
-import org.eu.client.DisclaimerEnum;
-import org.eu.client.domain.Disclaimer;
 import org.eu.client.domain.Email;
 import org.eu.client.domain.HtmlEmail;
 import org.eu.client.domain.TextEmail;

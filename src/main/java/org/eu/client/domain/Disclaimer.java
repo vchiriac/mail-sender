@@ -1,7 +1,5 @@
 package org.eu.client.domain;
 
-import org.eu.client.DisclaimerEnum;
-
 
 public class Disclaimer {
 
