@@ -1,4 +1,4 @@
-package org.eu.client.mail;
+package org.eu.client.service;
 
 import org.eu.client.domain.DisclaimerEnum;
 import org.eu.client.domain.Disclaimer;

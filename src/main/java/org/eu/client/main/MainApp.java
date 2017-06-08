@@ -1,16 +1,14 @@
 package org.eu.client.main;
 
-import org.eu.client.domain.Email;
-import org.eu.client.domain.HtmlEmail;
-import org.eu.client.domain.RetryTimes;
-import org.eu.client.domain.TextEmail;
+import org.eu.client.builder.EmailBody;
+import org.eu.client.container.EmailContainer;
+import org.eu.client.domain.*;
 import org.eu.client.encryption.AES_EncryptionAlgorithm;
 import org.eu.client.encryption.DES_EncryptionAlgorithm;
-import org.eu.client.encryption.NO_EncriptionAlgorithm;
 import org.eu.client.exception.InternalException;
-import org.eu.client.mail.EmailService;
-import org.eu.client.mail.ExternalEmailService;
-import org.eu.client.mail.InternalEmailService;
+import org.eu.client.service.EmailService;
+import org.eu.client.service.ExternalEmailService;
+import org.eu.client.service.InternalEmailService;
 
 /**
  * The emails can be sent as plain text or as HTML
@@ -43,26 +41,58 @@ public class MainApp {
 
         //send a plain text email to an outside resource, with a disclaimer added at the end, unencrypted and no retry
         EmailService emailService = new ExternalEmailService(RetryTimes.NO_RETRY);
-        Email email = new TextEmail();
-        email.setEncryptionWith(new NO_EncriptionAlgorithm());
-        emailService.send(email);
+        EmailBody body = EmailBody.builder()
+                                  .type(EmailType.TEXT)
+                                  .content("text/plain")
+                                   .build();
+        emailService.send(EmailContainer.builder()
+                                        .from("aa")
+                                        .to("bb")
+                                        .subject("hey")
+                                        .body(body)
+                                        .build());
 
         //ending an HTML email to an internal server (so without the disclaimer), encrypted with DES, with the retry functionality
         emailService = new InternalEmailService(RetryTimes.WITH_RETRY);
-        email = new HtmlEmail();
-        email.setEncryptionWith(new DES_EncryptionAlgorithm());
-        emailService.send(email);
+        body = EmailBody.builder()
+                .type(EmailType.HTML)
+                        .content("text/html; charset=utf-8")
+                .build();
+        emailService.send(EmailContainer.builder()
+                .from("aa")
+                        .to("bb")
+                .subject("hey")
+                .body(body)
+                        .encryptedWith(new DES_EncryptionAlgorithm())
+                        .build());
 
         //sending an HTML email to an outside resource, with a disclaimer added at the end and encrypted with AES with retries in case of errors
         emailService = new ExternalEmailService(RetryTimes.WITH_RETRY);
-        email = new HtmlEmail();
-        email.setEncryptionWith(new AES_EncryptionAlgorithm());
-        emailService.send(email);
+        body = EmailBody.builder()
+                .type(EmailType.HTML)
+                        .content("text/html; charset=utf-8")
+                .build();
+        emailService.send(EmailContainer.builder()
+                .from("aa")
+                        .to("bb")
+                .subject("hey")
+                .body(body)
+                        .encryptedWith(new AES_EncryptionAlgorithm())
+                        .build());
 
         //sending a plain text email to an outside resource and encrypted first with DES and then with AES
-        emailService = new ExternalEmailService(RetryTimes.NO_RETRY);
-        email = new HtmlEmail();
-        email.setEncryptionWith(new DES_EncryptionAlgorithm(), new AES_EncryptionAlgorithm());
-        emailService.send(email);
+        emailService = new InternalEmailService(RetryTimes.NO_RETRY);
+        body = EmailBody.builder()
+                .type(EmailType.TEXT)
+                        .content("text/plain")
+                .build();
+        emailService.send(EmailContainer.builder()
+                .from("aa")
+                        .to("bb")
+                .subject("hey")
+                .body(body)
+                .encryptedWith(new DES_EncryptionAlgorithm(), new AES_EncryptionAlgorithm())
+                        .build());
+
     }
 }
