@@ -1,7 +1,7 @@
 package org.eu.client.main;
 
 import org.eu.client.builder.EmailBody;
-import org.eu.client.container.EmailContainer;
+import org.eu.client.container.Email;
 import org.eu.client.domain.*;
 import org.eu.client.encryption.AES_EncryptionAlgorithm;
 import org.eu.client.encryption.DES_EncryptionAlgorithm;
@@ -45,7 +45,7 @@ public class MainApp {
                                   .type(EmailType.TEXT)
                                   .content("text/plain")
                                    .build();
-        emailService.send(EmailContainer.builder()
+        emailService.send(Email.builder()
                                         .from("aa")
                                         .to("bb")
                                         .subject("hey")
@@ -58,7 +58,7 @@ public class MainApp {
                 .type(EmailType.HTML)
                         .content("text/html; charset=utf-8")
                 .build();
-        emailService.send(EmailContainer.builder()
+        emailService.send(Email.builder()
                 .from("aa")
                         .to("bb")
                 .subject("hey")
@@ -72,7 +72,7 @@ public class MainApp {
                 .type(EmailType.HTML)
                         .content("text/html; charset=utf-8")
                 .build();
-        emailService.send(EmailContainer.builder()
+        emailService.send(Email.builder()
                 .from("aa")
                         .to("bb")
                 .subject("hey")
@@ -86,7 +86,7 @@ public class MainApp {
                 .type(EmailType.TEXT)
                         .content("text/plain")
                 .build();
-        emailService.send(EmailContainer.builder()
+        emailService.send(Email.builder()
                 .from("aa")
                         .to("bb")
                 .subject("hey")

@@ -1,7 +1,7 @@
 package org.eu.client.service;
 
 
-import org.eu.client.container.EmailContainer;
+import org.eu.client.container.Email;
 import org.eu.client.domain.Disclaimer;
 import org.eu.client.exception.InternalException;
 import org.eu.client.handler.MessageHandler;
@@ -16,8 +16,8 @@ public abstract class EmailService {
         this.retries = retries;
     }
 
-    public void send(EmailContainer container) throws InternalException {
-        container.getBody().setDisclaimer(disclaimer);
-        new MessageHandler(retries).handle(container);
+    public void send(Email email) throws InternalException {
+        email.getBody().setDisclaimer(disclaimer);
+        new MessageHandler(retries).handle(email);
     }
 }

@@ -1,7 +1,7 @@
 package org.eu.client.builder;
 
 
-import org.eu.client.container.EmailContainer;
+import org.eu.client.container.Email;
 import org.eu.client.encryption.EncryptionAlgorithm;
 
 public interface EmailBuilder {
@@ -15,5 +15,5 @@ public interface EmailBuilder {
 
     EmailBuilder encryptedWith(EncryptionAlgorithm... encryptionAlgorithm);
 
-    public EmailContainer build();
+    public Email build();
 }

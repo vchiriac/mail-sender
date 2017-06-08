@@ -1,6 +1,6 @@
 package org.eu.client.handler;
 
-import org.eu.client.container.EmailContainer;
+import org.eu.client.container.Email;
 import org.eu.client.exception.InternalException;
 
 
@@ -13,14 +13,14 @@ public class MessageHandler {
     }
 
 
-    public void handle(EmailContainer container) throws InternalException {
+    public void handle(Email email) throws InternalException {
         int count = 1;
         while (count <= retries) {
             try {
-                System.out.println(container.getBody().getType() + " "
-                        + container.getBody().getContent() + " "
-                        + container.getBody().getDisclaimer() + " "
-                            + container.displayEncription()
+                System.out.println(email.getBody().getType() + " "
+                        + email.getBody().getContent() + " "
+                        + email.getBody().getDisclaimer() + " "
+                            + email.displayEncription()
                             + " sent.");
             } catch (Exception e) {
                 // handle exception

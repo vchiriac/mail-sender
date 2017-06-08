@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public final class EmailContainer {
+public final class Email {
 
     private final List<EncryptionAlgorithm> encryptionAlgorithms;
     private final String fromAddress;
@@ -16,7 +16,7 @@ public final class EmailContainer {
     private final String subject;
     private final EmailBody body;
 
-    protected EmailContainer(Builder builder) {
+    protected Email(Builder builder) {
         this.fromAddress = builder.fromAddress;
         this.toAddresses = builder.toAddresses;
         this.subject = builder.subject;
@@ -93,7 +93,7 @@ public final class EmailContainer {
         }
 
         @Override
-        public EmailContainer build() {
+        public Email build() {
 
             if (this.fromAddress == null) {
                 throw new IllegalStateException("From address cannot be null or empty!");
@@ -102,7 +102,7 @@ public final class EmailContainer {
                 throw new IllegalArgumentException("At least one TO: address is required!");
             }
 
-            return new EmailContainer(this);
+            return new Email(this);
         }
     }
 }
