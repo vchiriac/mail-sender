@@ -1,5 +1,9 @@
 package org.eu.client.domain;
 
+/*
+*
+* Enum for Disclaimer text
+*/
 
 public enum DisclaimerEnum {
     NONE(""),
